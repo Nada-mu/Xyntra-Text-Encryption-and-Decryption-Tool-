@@ -180,41 +180,41 @@ public class CipherApp extends Application {
     
     // =======Atbash Cipher=======  
     private static String Atbash(String message) {
-    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Standard alphabet
-    String reverseAlpha = "ZYXWVUTSRQPONMLKJIHGFEDCBA"; // Reversed alphabet
-    String numbers = "0123456789"; // Standard numeric sequence
-    String reversedNumbers = "9876543210"; // Reversed numeric sequence
-    message = message.toUpperCase(); // Convert the message to uppercase for consistency
-    String encryptText = ""; // Initialize the encrypted message
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Regular alphabet
+        String reverseAlpha = "ZYXWVUTSRQPONMLKJIHGFEDCBA"; // Reversed alphabet
+        String numbers = "0123456789"; // Regular digits
+        String reversedNumbers = "9876543210"; // Reversed digits
+        message = message.toUpperCase(); // Convert the message to uppercase for consistency
+        String Text = "";// Initialize an empty string to store the encrypted text.
 
-    for (int i = 0; i < message.length(); i++) {
-        char currentChar = message.charAt(i); // Get the current character
-        if (currentChar == ' ') {
-            // Preserve spaces in the message
-            encryptText += " ";
-        } else if (Character.isLetter(currentChar)) {
-            // Substitute alphabetic characters using the reversed alphabet
-            for (int j = 0; j < alpha.length(); j++) {
-                if (currentChar == alpha.charAt(j)) {
-                    encryptText += reverseAlpha.charAt(j);
-                    break;
+        for (int i = 0; i < message.length(); i++) {
+            char currentChar = message.charAt(i); // Get the current character
+            if (currentChar == ' ') {
+                // Preserve spaces in the message
+                Text += " "; 
+            } else if (Character.isLetter(currentChar)) {
+                // Substitute alphabetic characters using the reversed alphabet
+                for (int j = 0; j < alpha.length(); j++) {
+                    if (currentChar == alpha.charAt(j)) {
+                        Text += reverseAlpha.charAt(j);
+                        break;
+                    }
                 }
-            }
-        } else if (Character.isDigit(currentChar)) {
-            // Substitute numeric characters using the reversed numbers
-            for (int j = 0; j < numbers.length(); j++) {
-                if (currentChar == numbers.charAt(j)) {
-                    encryptText += reversedNumbers.charAt(j);
-                    break;
+            } else if (Character.isDigit(currentChar)) {
+                // Substitute numeric characters using the reversed numbers
+                for (int j = 0; j < numbers.length(); j++) {
+                    if (currentChar == numbers.charAt(j)) {
+                        Text += reversedNumbers.charAt(j);
+                        break;
+                    }
                 }
+            } else {
+                // Preserve special characters as-is
+                Text += currentChar;
             }
-        } else {
-            // Preserve special characters as-is
-            encryptText += currentChar;
         }
+        return Text.toLowerCase(); // Return the text in lowercase
     }
-    return encryptText.toLowerCase(); // Return the encrypted text in lowercase
-}
 
     
     // Utility method to show an alert dialog with a custom title and message
